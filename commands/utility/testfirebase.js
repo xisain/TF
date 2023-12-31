@@ -36,8 +36,7 @@ module.exports = {
             return color;
         }
 
-        const rawAgentName = interaction.options.getString('name');
-        const agentName = rawAgentName.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
+        
 
         // Fetch agent data from Firebase Realtime Database
         const databaseRef = admin.database().ref('/agent');
@@ -53,6 +52,8 @@ module.exports = {
                 embed.addFields({ name: agent.name, value: agent.deskripsi });
             });
         } else {
+            const rawAgentName = interaction.options.getString('name');
+            const agentName = rawAgentName.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
             // If a specific agent is mentioned, create embed for that agent
             const agent = agents[agentName];
 
